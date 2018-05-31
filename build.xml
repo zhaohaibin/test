@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="palace" default="compile" basedir=".">
+    <property name="tomcat.lib" value="/usr/local/apache-tomcat-8.0.24/lib" />
+    <property name="dest.dir" value="WEB-INF/classes" />
+    <property name="src.dir" value="src" />
+    <!-- 定义属性，打成war包的名称。 -->  
+    <property name="warFileName" value="palace.war"></property>  
+    <target name="init">
+        <mkdir dir="${dest.dir}" />
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${dest.dir}">
+            <classpath>
+                <fileset dir="${tomcat.lib}">
+                    <include name="*.jar" />
+                </fileset>
+                <fileset dir="WebContent/WEB-INF/lib">
+                    <include name="*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- 定义默认任务，将class文件集合成jar包。 -->  
+    <target name="war" depends="compile">  
+        <!-- 删除原有war包。 -->  
+        <delete dir="${basedir}/${warFileName}" />  
+        <!-- 建立新war包。 -->  
+        <war destfile="${basedir}/${warFileName}" webxml="${basedir}/WebContent/WEB-INF/web.xml">  
+            <!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->  
+            <fileset dir="${basedir}/WebContent">  
+                <include name="**/**.*" />  
+                <exclude name="**/*.jar"/>  
+                <exclude name="**/*.class"/>  
+            </fileset>  
+            <!-- 将jar和class文件拷贝到war包的对应路径下。 -->  
+            <lib dir="${basedir}/WebContent/WEB-INF/lib" />  
+            <classes dir="${dest.dir}" />  
+        </war>  
+    </target>
+    
+    <target name="clean">
+        <delete dir="${dest.dir}" />
+    </target>
+</project>
