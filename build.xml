@@ -8,7 +8,7 @@
     <target name="init">
         <mkdir dir="${dest.dir}" />
     </target>
-    <target name="compile" depends="init">
+    <!--target name="compile" depends="init">
         <javac srcdir="${src.dir}" destdir="${dest.dir}">
             <classpath>
                 <fileset dir="${tomcat.lib}">
@@ -19,7 +19,7 @@
                 </fileset>
             </classpath>
         </javac>
-    </target>
+    </target-->
     
     <!-- 定义默认任务，将class文件集合成jar包。 -->  
     <target name="war" depends="compile">  
