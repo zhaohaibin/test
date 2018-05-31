@@ -4,7 +4,7 @@
     <property name="dest.dir" value="WEB-INF/classes" />
     <property name="src.dir" value="src" />
     <!-- 定义属性，打成war包的名称。 -->  
-    <property name="warFileName" value="test.war"></property>  
+    <property name="warFileName" value="test1.war"></property>  
     <target name="init">
         <mkdir dir="${dest.dir}" />
     </target>
@@ -14,7 +14,7 @@
                 <fileset dir="${tomcat.lib}">
                     <include name="*.jar" />
                 </fileset>
-                <fileset dir="WebContent/WEB-INF/lib">
+                <fileset dir="web/WEB-INF/lib">
                     <include name="*.jar" />
                 </fileset>
             </classpath>
@@ -26,15 +26,15 @@
         <!-- 删除原有war包。 -->  
         <delete dir="${basedir}/${warFileName}" />  
         <!-- 建立新war包。 -->  
-        <war destfile="${basedir}/${warFileName}" webxml="${basedir}/WebContent/WEB-INF/web.xml">  
+        <war destfile="${basedir}/${warFileName}" webxml="${basedir}/web/WEB-INF/web.xml">  
             <!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->  
-            <fileset dir="${basedir}/WebContent">  
+            <fileset dir="${basedir}/web">  
                 <include name="**/**.*" />  
                 <exclude name="**/*.jar"/>  
                 <exclude name="**/*.class"/>  
             </fileset>  
             <!-- 将jar和class文件拷贝到war包的对应路径下。 -->  
-            <lib dir="${basedir}/WebContent/WEB-INF/lib" />  
+            <lib dir="${basedir}/web/WEB-INF/lib" />  
             <classes dir="${dest.dir}" />  
         </war>  
     </target>
