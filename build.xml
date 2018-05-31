@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="palace" default="compile" basedir=".">
+<project name="test" default="compile" basedir=".">
     <property name="tomcat.lib" value="/usr/local/apache-tomcat-8.0.24/lib" />
     <property name="dest.dir" value="WEB-INF/classes" />
     <property name="src.dir" value="src" />
     <!-- 定义属性，打成war包的名称。 -->  
-    <property name="warFileName" value="palace.war"></property>  
+    <property name="warFileName" value="test.war"></property>  
     <target name="init">
         <mkdir dir="${dest.dir}" />
     </target>
